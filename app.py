@@ -19,11 +19,11 @@ class Site(db.Model):
     timepost = db.Column(db.Text, nullable= False)
 
 
-@app.route("/t")
-def test():
-    c = Site.query.order_by(Site.id.desc()).first()
-    last = c.id
-    return str(last)
+# @app.route("/t")
+# def test():
+#     c = Site.query.order_by(Site.id.desc()).first()
+#     last = c.id
+#     return str(last)
 
 @app.route("/")
 @app.route("/index")
@@ -125,37 +125,37 @@ def KJNO():
 def APKBG():
     return render_template("APKBG.html")
 
-@app.route ("/otchet")
-def otchet():
-    return render_template("otchet.html")
+# @app.route ("/otchet")
+# def otchet():
+#     return render_template("otchet.html")
 
 
 @app.route ("/success")
 def success():
     return render_template("success.html")
 
-@app.route ("/create", methods =['POST', 'GET'])
-def create():
-    if request.method == 'POST':
-        title = request.form['title']
-        intro = request.form['intro']
-        text = request.form['text']
-        pic = request.files['pic']
-        name = secure_filename(pic.filename)
-        mimetype = pic.mimetype
-        now = datetime.datetime.utcnow()
-        timepost = now.strftime("%d.%m.%Y")
+# @app.route ("/create", methods =['POST', 'GET'])
+# def create():
+#     if request.method == 'POST':
+#         title = request.form['title']
+#         intro = request.form['intro']
+#         text = request.form['text']
+#         pic = request.files['pic']
+#         name = secure_filename(pic.filename)
+#         mimetype = pic.mimetype
+#         now = datetime.datetime.utcnow()
+#         timepost = now.strftime("%d.%m.%Y")
 
-        post = Site(title=title, text=text,intro=intro,img=pic.read(), name=name,mimetype=mimetype,timepost=timepost)
+#         post = Site(title=title, text=text,intro=intro,img=pic.read(), name=name,mimetype=mimetype,timepost=timepost)
 
-        try:
-            db.session.add(post)
-            db.session.commit()
-            return redirect("/success")
-        except:
-            return 'При добавлении поста произошла ошибка'
-    else:
-        return render_template("create.html")
+#         try:
+#             db.session.add(post)
+#             db.session.commit()
+#             return redirect("/success")
+#         except:
+#             return 'При добавлении поста произошла ошибка'
+#     else:
+#         return render_template("create.html")
 
 
 @app.route ("/<int:id>")
@@ -177,9 +177,9 @@ def project():
 
 
 
-@app.route("/bisnes")
-def bisnes():
-    return render_template("bisnes.html")
+# @app.route("/bisnes")
+# def bisnes():
+#     return render_template("bisnes.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=4567, debug=True)
